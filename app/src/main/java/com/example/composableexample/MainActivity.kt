@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -16,22 +17,41 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.composableexample.ui.theme.ComposableExampleTheme
 
+/**
+ * Notes
+ * Day1: Defining Row & Coloumn basics & using setContent
+ * Day2:    Text, Spacer UI elements.
+ *          Using modifiers.
+ *          Value paramters are applied sequentially in th order declared inside
+ *          offset is equivalent to margin, but this once actually ignores other ui elements and overlaps based on it's x and y axis defined
+ */
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            
+
             Column(
                 modifier = Modifier
+                    .background(Color.Green)
 //                    .fillMaxSize(0.5f)
-                    .height(200.dp)
-                    .width(300.dp)
-                    .background(Color.Green),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.SpaceEvenly
+                    .fillMaxHeight(0.5f)
+                    .fillMaxWidth()
+//                    .height(200.dp)
+//                    .width(300.dp)
+//                    .padding(10.dp)
+//                    .padding(top = 50.dp)
+//                    .requiredWidth(600.dp)
+
+                    .border(5.dp, Color.Magenta)
+                    .padding(5.dp)
+                    .border(5.dp, Color.Blue)
+                    .padding(5.dp)
+//                horizontalAlignment = Alignment.CenterHorizontally,
+//                verticalArrangement = Arrangement.SpaceEvenly
             ) {
-                Text(text = "Hello")
+                Text(text = "Hello", modifier = Modifier.offset(0.dp, 50.dp))
                 Text("World")
+                Spacer(modifier = Modifier.height(150.dp))
                 Text("Again")
             }
         }
