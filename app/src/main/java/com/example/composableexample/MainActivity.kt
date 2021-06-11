@@ -1,10 +1,12 @@
 package com.example.composableexample
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -24,6 +26,7 @@ import com.example.composableexample.ui.theme.ComposableExampleTheme
  *          Using modifiers.
  *          Value paramters are applied sequentially in th order declared inside
  *          offset is equivalent to margin, but this once actually ignores other ui elements and overlaps based on it's x and y axis defined
+ * Day3: clickable modifier
  */
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,7 +53,14 @@ class MainActivity : ComponentActivity() {
 //                verticalArrangement = Arrangement.SpaceEvenly
             ) {
                 Text(text = "Hello", modifier = Modifier.offset(0.dp, 50.dp))
-                Text("World")
+                Text("World", modifier = Modifier
+                    .padding(30.dp)
+                    .border(5.dp, Color.Yellow)
+                    .clickable {
+                        Toast
+                            .makeText(baseContext, "Click", Toast.LENGTH_SHORT)
+                            .show()
+                    })
                 Spacer(modifier = Modifier.height(150.dp))
                 Text("Again")
             }
