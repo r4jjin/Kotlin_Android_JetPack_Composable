@@ -11,18 +11,21 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MessageText("This is a composable function.")
+            MessageText(Message("Detoxic", "Spirit"))
         }
     }
+}
 
-    @Composable
-    fun MessageText(text: String) {
-        Text(text = "Intro : $text")
-    }
+data class Message(val name: String, val details: String)
 
-    @Preview
-    @Composable
-    fun Preview() {
-        MessageText("Hi")
-    }
+@Composable
+fun MessageText(text: Message) {
+    Text(text = "Intro : ${text.name}")
+    Text(text = "Intro : ${text.details}")
+}
+
+@Preview
+@Composable
+fun Preview() {
+    MessageText(Message("Detoxic", "Spirit"))
 }
