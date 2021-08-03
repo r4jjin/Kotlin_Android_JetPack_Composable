@@ -1,5 +1,6 @@
 package com.example.composableexample
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
@@ -61,8 +62,17 @@ fun MessageCard(msg: Message) {
     }
 }
 
-@Preview
+@Preview(name = "Light Mode")
+@Preview(
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showBackground = true,
+    name = "Dark Mode"
+)
 @Composable
-fun Preview() {
-    MessageCard(Message("Detoxic", "Spirit"))
+fun PreviewMessageCard() {
+    MessageCard(
+        msg = Message("Colleague", "Hey, take a look at Jetpack Compose, it's great!")
+    )
+
 }
+
