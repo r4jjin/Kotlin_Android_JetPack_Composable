@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -22,7 +24,18 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MessageCard(Message("Detoxic", "Spirit"))
+            Conversation(SampleData.conversationSample)
+//            MessageCard(Message("Detoxic", "Spirit"))
+        }
+    }
+}
+
+
+@Composable
+fun Conversation(messages: List<Message>) {
+    LazyColumn {
+        items(messages) { message ->
+            MessageCard(message)
         }
     }
 }
@@ -68,11 +81,12 @@ fun MessageCard(msg: Message) {
     showBackground = true,
     name = "Dark Mode"
 )
+@Preview
 @Composable
-fun PreviewMessageCard() {
-    MessageCard(
-        msg = Message("Colleague", "Hey, take a look at Jetpack Compose, it's great!")
-    )
-
+fun PreviewConversation() {
+//    ComposeTutorialTheme {
+    Conversation(SampleData.conversationSample)
+//    }
 }
+
 
